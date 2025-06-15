@@ -29,7 +29,6 @@
         {/if}
     </div>
     <div>
-        For now you can only see your profile. In the future activity, status...
-        might be added.
+        For now you can only see your profile. In the future activity, status... might be added.
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { PUBLIC_API } from "$env/static/public";
-import type { LoadEvent } from "@sveltejs/kit";
+import { error, type LoadEvent } from "@sveltejs/kit";
 
 export const fetchAPI = async (
     { fetch }: LoadEvent,
@@ -8,6 +8,14 @@ export const fetchAPI = async (
     const response = await fetch(`${PUBLIC_API}${path}`, {
         credentials: "include",
     });
+
+    switch (response.status) {
+        case 200:
+            break;
+        case 401:
+        default:
+            error(response.status);
+    }
 
     if (response.headers.get("Content-Type") == "application/json") {
         return {
