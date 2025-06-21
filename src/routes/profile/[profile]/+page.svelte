@@ -4,22 +4,24 @@
     import NavButton from "$lib/components/NavButton.svelte";
 
     let { data }: PageProps = $props();
+
+    let profile = data.profileData;
 </script>
 
 <div class="max-div-width flex w-full grow flex-wrap justify-center gap-1 px-8">
     <div class="p-3">
         <img
             class="size-64 border-8"
-            src={data.profile.image}
-            alt={data.profile.username}
-            style="border-color: {data.profile.color};"
+            src={profile.image}
+            alt={profile.username}
+            style="border-color: {profile.color};"
         />
-        <p class="text-4xl">{data.profile.name}</p>
-        <p class="text-2xl">{data.profile.username}</p>
-        {#if data.profile.role !== ""}
-            <p class="text-lg">{data.profile.role_name}</p>
+        <p class="text-4xl">{profile.name}</p>
+        <p class="text-2xl">{profile.username}</p>
+        {#if profile.role !== ""}
+            <p class="text-lg">{profile.role_name}</p>
         {/if}
-        {#if data.profile.username === page.params.profile}
+        {#if profile.username === page.params.profile}
             <NavButton
                 popOut={false}
                 dest="/settings/profile"

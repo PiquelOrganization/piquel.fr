@@ -1,11 +1,11 @@
-import type { PageLoad, LoadEvent } from "./$types";
-import { error } from "@sveltejs/kit";
-import { fetchDocsPage } from "$lib/utils/docs";
+import type { LoadEvent, PageLoad } from "./$types";
+import { fetchDocsPage } from "$lib/utils/api";
 
 export const load: PageLoad = async (event: LoadEvent) => {
-    const response = await fetchDocsPage(event, event.params.page, "docs");
-    if (response.status != 200)
-        error(response.status);
-
-    return { summary: await response.data }
+    const response = await fetchDocsPage(
+        event,
+        `/${event.params.page}`,
+        "docs",
+    );
+    return { summary: await response.data };
 };
