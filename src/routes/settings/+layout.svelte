@@ -1,20 +1,12 @@
 <script>
-    import { goto } from "$app/navigation";
-    import { onMount } from "svelte";
     import NavButton from "$lib/components/NavButton.svelte";
 
     let { data, children } = $props();
 
-    onMount(() => {
-        if (!data.profile) {
-            goto("/");
-        }
-
-        // if (currentPage === undefined) {
-        //     activeItem = items[0];
-        //     goto(`/settings/${activeItem.toLowerCase()}`);
-        // }
-    });
+    // if (currentPage === undefined) {
+    //     activeItem = items[0];
+    //     goto(`/settings/${activeItem.toLowerCase()}`);
+    // }
 </script>
 
 <div class="max-div-width flex w-full grow flex-wrap gap-1 p-2 px-8">
