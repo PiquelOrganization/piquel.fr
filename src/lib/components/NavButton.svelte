@@ -2,17 +2,21 @@
     import Card from "./Card.svelte";
 
     let {
-        className = '',
+        className = "",
         popOut = true,
         useCardClasses = true,
-        dest = '/',
+        fullWidth = false,
+        dest = "/",
         newTab = false,
-        children
-    } = $props()
-    
+        children,
+    } = $props();
 </script>
 
-<a href={dest} target={newTab ? "_blank" : ""}>
+<a
+    href={dest}
+    class={fullWidth ? "w-full" : ""}
+    target={newTab ? "_blank" : ""}
+>
     <Card {popOut} {className} useDefaultClasses={useCardClasses}>
         {@render children()}
     </Card>

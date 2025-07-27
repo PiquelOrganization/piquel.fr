@@ -1,7 +1,7 @@
 <script lang="ts">
     import { invalidateAll } from "$app/navigation";
     import Button from "$lib/components/Button.svelte";
-    import { error } from "@sveltejs/kit";
+    import TextInput from "$lib/components/input/TextInput.svelte";
     import type { PageProps } from "./$types";
     import { PUBLIC_API } from "$env/static/public";
 
@@ -10,6 +10,8 @@
     let username: string = $state(data.settings.profile.username);
     let name: string = $state(data.settings.profile.name);
     let image: string = $state(data.settings.profile.image);
+
+    let error: string = $state("");
 
     async function updateProfile() {
         const response = await fetch(
@@ -25,7 +27,7 @@
         );
 
         if (response.status != 200) {
-            error(response.status, { message: await response.text() });
+            error = await response.text();
         }
 
         invalidateAll();
@@ -39,37 +41,13 @@
     }}
     class="flex flex-col"
 >
-    <label class="mb-1">
-        <p class="text-sm text-gray-600">Username</p>
-        <input
-            class="rounded-md border-gray-400 bg-gray-100 border-2 p-1"
-            bind:value={username}
-            name="username"
-            type="text"
-        />
-    </label>
+    <TextInput label="Username" bind:value={username} />
+    <TextInput label="Name" bind:value={name} />
+    <TextInput label="Image" bind:value={image} />
 
-    <label class="mb-1">
-        <p class="text-sm text-gray-600">Name</p>
-        <input
-            class="rounded-md border-gray-400 bg-gray-100 border-2 p-1"
-            bind:value={name}
-            name="name"
-            type="text"
-        />
-    </label>
+    <p class="text-red-500 font-bold text-sm">{error}</p>
 
-    <label class="mb-1">
-        <p class="text-sm text-gray-600">Image</p>
-        <input
-            class="rounded-md border-gray-400 bg-gray-100 border-2 p-1"
-            bind:value={image}
-            name="image"
-            type="text"
-        />
-    </label>
-
-    <Button className="mt-2" onclick={updateProfile} form="update-profile">
+    <Button className="mt-2 p-1" onclick={updateProfile} form="update-profile">
         Save
     </Button>
 </form>

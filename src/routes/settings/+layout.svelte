@@ -12,7 +12,7 @@
                 class="size-16 border-4"
                 src={data.settings.profile.image}
                 alt={data.settings.profile.username}
-                style="border-color: {data.profile.color}; "
+                style="border-color: {data.settings.profile.color}; "
             />
             <div class="ml-1">
                 <p class="text-2xl">
@@ -36,7 +36,7 @@
         <div class="w-auto grow justify-center">
             <NavButton
                 className="p-1 m-1 min-w-64 text-left pl-2 w-full"
-                dest="/data.settings/profile"
+                dest="/settings/profile"
                 popOut={false}>Profile</NavButton
             >
             <hr class="h-px m-1 my-2 grow bg-gray-300 border-0" />

@@ -29,17 +29,17 @@
                 popOut={false}
                 useCardClasses={false}
                 className="p-2 m-2"
-                dest="/minecraft"
+                dest="/docs"
             >
-                Minecraft
+                Docs
             </NavButton>
             <NavButton
                 popOut={false}
                 useCardClasses={false}
                 className="p-2 m-2"
-                dest="/dirk"
+                dest="/services"
             >
-                Dirk
+                Services
             </NavButton>
         </nav>
         <div class="flex justify-end">

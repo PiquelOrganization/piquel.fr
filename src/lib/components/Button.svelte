@@ -2,12 +2,14 @@
     import Card from "./Card.svelte";
 
     let {
-        className = "hover:bg-gray-300 click:bg-gray-700",
+        className = "",
         type = undefined,
         form = "",
         popOut = false,
         useCardClasses = true,
         fullWidth = false,
+        defaultHover = true,
+        fit = false,
         children,
         onclick,
     } = $props();
@@ -20,8 +22,18 @@
     // export let fullWidth = false;
 </script>
 
-<button class={fullWidth ? "w-full" : ""} {onclick} {type} {form}>
-    <Card {popOut} {className} useDefaultClasses={useCardClasses}>
+<button
+    class={(fullWidth ? "w-full" : "") + (fit ? " size-fit" : "")}
+    {onclick}
+    {type}
+    {form}
+>
+    <Card
+        {popOut}
+        className={className +
+            (defaultHover ? " hover:bg-gray-300 click:bg-gray-700" : "")}
+        useDefaultClasses={useCardClasses}
+    >
         {@render children()}
     </Card>
 </button>
